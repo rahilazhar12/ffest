@@ -1,79 +1,81 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import 'aos/dist/aos.css';
+import AOS from 'aos';
 
-const Attendees = () => {
+const AttendeesSection = () => {
+  React.useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  const attendees = [
+    { label: 'IT Training Professionals', icon: '💻' },
+    { label: 'Government Institutions', icon: '🏛️' },
+    { label: 'CEOs & CXOs', icon: '📊' },
+    { label: 'Tech Influencers', icon: '🌐' },
+    { label: 'Graduates', icon: '🎓' },
+    { label: 'Freelancers', icon: '🧑‍💻' },
+    { label: 'Software Houses', icon: '🖥️' },
+    { label: 'Tech Companies', icon: '🏢' },
+    { label: 'Media Professionals', icon: '🎥' },
+    { label: 'Academia', icon: '📚' },
+    { label: 'Startups', icon: '🚀' },
+    { label: 'Students', icon: '👩‍🎓' },
+  ];
+
   return (
-    <motion.div 
-      className="relative py-8 overflow-hidden"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-    >
-      <motion.div 
-        className="absolute inset-0 w-full h-full"
-        initial={{ x: '-100%' }}
-        animate={{ x: '100%' }}
-        transition={{ duration: 5, repeat: Infinity, repeatType: 'mirror', ease: 'easeInOut' }}
-        style={{ background: 'linear-gradient(270deg, rgba(30, 144, 255, 1), rgba(255, 105, 180, 1))', backgroundSize: '200% 200%' }}
-      />
-      <div className="container mx-auto px-4 relative z-10">
-        <motion.div 
-          className="mt-16 text-center"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
+    <div className="bg-gradient-to-r from-purple-700 via-blue-800 to-purple-900 py-12 px-6">
+      <div className="text-center mb-8">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400"
         >
-          <h2 className="text-4xl font-extrabold text-purple-600">WHO CAN ATTEND?</h2>
-          <p className="text-2xl text-blue-500 font-bold mt-2">3,000+ ATTENDEES EXPECTED</p>
-          <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            {[  
-              { title: 'IT Training Professionals', icon: 'https://via.placeholder.com/40' },
-              { title: 'Government Institutions', icon: 'https://via.placeholder.com/40' },
-              { title: 'CEOs & CXOs', icon: 'https://via.placeholder.com/40' },
-              { title: 'Tech Influencers', icon: 'https://via.placeholder.com/40' },
-              { title: 'Graduates', icon: 'https://via.placeholder.com/40' },
-              { title: 'Freelancers', icon: 'https://via.placeholder.com/40' },
-              { title: 'Software Houses', icon: 'https://via.placeholder.com/40' },
-              { title: 'Tech Companies', icon: 'https://via.placeholder.com/40' },
-              { title: 'Media Professionals', icon: 'https://via.placeholder.com/40' },
-              { title: 'Academia', icon: 'https://via.placeholder.com/40' },
-              { title: 'Startups', icon: 'https://via.placeholder.com/40' },
-              { title: 'Students', icon: 'https://via.placeholder.com/40' },
-            ].map((item, index) => (
-              <motion.div 
-                key={index} 
-                className="p-4 bg-white bg-opacity-70 rounded-lg shadow-md flex items-center space-x-4"
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-              >
-                <motion.img 
-                  src={item.icon} 
-                  alt={item.title} 
-                  className="w-12 h-12" 
-                  initial={{ scale: 0.8 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.5 }}
-                />
-                <motion.span 
-                  className="text-lg font-semibold text-purple-700"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 1 }}
-                >
-                  {item.title}
-                </motion.span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.div>
+          WHO CAN ATTEND?
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-xl md:text-2xl mt-2 outline-text"
+        >
+          3,000+ ATTENDEES EXPECTED
+        </motion.p>
       </div>
-    </motion.div>
+      <motion.div 
+        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+        data-aos="fade-up"
+      >
+        {attendees.map((attendee, index) => (
+          <motion.div
+            key={index}
+            className="flex flex-col items-center justify-center p-6 bg-transparent backdrop-blur-md shadow-lg rounded-2xl hover:scale-105 transform transition duration-300 border border-white/20"
+            whileHover={{ scale: 1.1, rotate: 3 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.div
+              className="text-5xl mb-4 text-purple-500"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 * index, duration: 0.5 }}
+            >
+              {attendee.icon}
+            </motion.div>
+            <motion.h2
+              className="text-lg font-semibold text-gray-200 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 * index + 0.2, duration: 0.5 }}
+            >
+              {attendee.label}
+            </motion.h2>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
   );
 };
 
-export default Attendees;
+export default AttendeesSection;
+
