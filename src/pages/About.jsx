@@ -1,11 +1,25 @@
-import React from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import React, { useEffect, useState } from "react";
+import { motion, useScroll, useSpring } from "framer-motion";
 import pngfix from '../assets/images/pngfix.png';
 import pngfix2 from '../assets/images/pngfix2.png';
 
 const FutureFest2025 = () => {
-  const { scrollY } = useScroll();
-  const rotate = useTransform(scrollY, [0, 1000], [0, 360]);
+  const { scrollYProgress } = useScroll();
+  const [rotation, setRotation] = useState(0);
+
+  // Smooth scrolling rotation effect
+  const smoothRotate = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 20,
+  });
+
+  useEffect(() => {
+    const unsubscribe = smoothRotate.on("change", (latest) => {
+      setRotation(latest * 360);
+    });
+
+    return () => unsubscribe();
+  }, [smoothRotate]);
 
   return (
     <div className="bg-white text-gray-800 px-6 py-10 md:px-20 lg:px-40 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -49,8 +63,8 @@ const FutureFest2025 = () => {
       {/* Right Section */}
       <div className="flex justify-center items-center relative">
         <motion.div
-          className="rounded-full shadow-lg overflow-hidden w-64 h-64 md:w-80 md:h-80 z-10 mb-72"
-          style={{ rotate }}
+          className="rounded-full shadow-lg overflow-hidden w-64 h-64 md:w-80 md:h-80 z-10"
+          style={{ rotate: rotation }}
         >
           <img
             src={pngfix2}
