@@ -38,7 +38,7 @@ const AttendeesSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-xl md:text-2xl mt-2 outline-text"
+          className="text-4xl md:text-4xl mt-2 outline-text"
         >
           3,000+ ATTENDEES EXPECTED
         </motion.p>

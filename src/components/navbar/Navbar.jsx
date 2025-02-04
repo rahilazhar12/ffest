@@ -15,7 +15,7 @@ const Navbar = () => {
         {/* Left Section: Social Media Links */}
         <div className="flex items-center gap-4 text-white">
           <span className="font-bold text-sm md:text-base">FOLLOW</span>
-          <a href="#" className="hover:text-blue-300">
+          {/* <a href="#" className="hover:text-blue-300">
             <i className="fab fa-facebook-f">F</i>
           </a>
           <a href="#" className="hover:text-blue-300">
@@ -26,7 +26,7 @@ const Navbar = () => {
           </a>
           <a href="#" className="hover:text-blue-300">
             <i className="fab fa-times">X</i>
-          </a>
+          </a> */}
         </div>
 
         {/* Center Section: Logo */}
